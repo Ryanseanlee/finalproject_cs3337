@@ -10,6 +10,9 @@ from tensorflow import keras
 import numpy as np
 from keras.preprocessing import image
 
+
+
+
 def createModel():
       base_dir = 'src\cats_and_dogs_filtered'
       train_dir = os.path.join(base_dir, 'train')
@@ -80,22 +83,26 @@ def createModel():
             validation_steps=50,  # 1000 images = batch_size * steps
             verbose=2)
 
-      model.save('./model')
-model = keras.models.load_model('./model')
+      model.save('../model') #For mac ../model
+model = keras.models.load_model('../model') #For mac ../model
 model.summary()
 
 
+def attempt_classification(path):
+      # predicting images
+      # path = "../download.jpg" #path to user image input that needs to be classified #(Luis A Gonzalez) For mac ../download.jpg
+      img = image.load_img(path, target_size=(150, 150))
+      x = image.img_to_array(img)
+      x = np.expand_dims(x, axis=0)
 
-# predicting images
-path = "download.jpg"#path to user image input that needs to be classified 
-img = image.load_img(path, target_size=(150, 150))
-x = image.img_to_array(img)
-x = np.expand_dims(x, axis=0)
+      images = np.vstack([x])
+      classes = model.predict(images, batch_size=10)
+      print(type(classes[0]))
+      if classes[0]>0.5:
+            print(path + " is a dog")
+            
+      else:
+            print(path + " is a cat")
 
-images = np.vstack([x])
-classes = model.predict(images, batch_size=10)
-print(classes[0])
-if classes[0]>0.5:
-      print(path + " is a dog")
-else:
-      print(path + " is a cat")
+      return classes[0]
+
