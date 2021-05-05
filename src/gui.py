@@ -7,18 +7,20 @@ from main import attempt_classification
 # Had to do pip install image
 #what 
 root = Tk()
-root.geometry("550x300+700+200")
+root.geometry("852x480+525+250")
 root.resizable(width=True, height=True)
 panel=Label(root, image='')
 current_image_path = ""
+label = Label(root, text='')
 
 def openfn():
     filename = filedialog.askopenfilename(title='open')
     return filename
 
 def open_img():
-    global current_image_path, panel
+    global current_image_path, panel, label
     
+    label.pack_forget()
     panel.pack_forget()
         
     x = openfn()
@@ -42,11 +44,16 @@ def attempt_program_run():
         classify_value(value)
 
 def classify_value(var):
+    global label
     if var[0]>0.5:
-        label = Label(root, text='Image Classified: DOG').pack(side=BOTTOM, pady=10)
+        
+        label = Label(root, text='Image Classified: DOG')
+        label.pack(side=BOTTOM)
         print(" is a dog")  
     else:
-        label = Label(root, text='Image Classified: CAT').pack(side=BOTTOM, pady=10)
+        
+        label = Label(root, text='Image Classified: CAT')
+        label.pack(side=BOTTOM)
         print(" is a cat")
 
 
@@ -54,5 +61,5 @@ topLabel = Label(root, text="GUI Project created by...")
 # pack buttons onto the gui and begin the root.mainloop()
 topLabel.pack(pady=5,)
 btn = Button(root, text='Image To Classify', command=open_img).pack(pady=10,)
-runTensor = Button(root, text='Run Program', command=attempt_program_run).pack(pady=10,side=BOTTOM)
+runTensor = Button(root, text='Run Program', command=attempt_program_run).pack(pady=5,side=BOTTOM)
 root.mainloop()
