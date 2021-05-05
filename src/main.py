@@ -10,8 +10,9 @@ from tensorflow import keras
 import numpy as np
 from keras.preprocessing import image
 
-
-
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+__location__ = os.path.normpath(os.path.join(__location__, os.pardir))
 
 def createModel():
       base_dir = 'src\cats_and_dogs_filtered'
@@ -85,8 +86,9 @@ def createModel():
 
       # model.save('../model') #For mac ../model
       # model = keras.models.load_model('../model') #For mac ../model
-      model.save(os.path.join('.', 'model')) #These two lines should make the above code work for both windows and mac
-model = keras.models.load_model(os.path.join('.', 'model')) 
+      
+      model.save(os.path.join(__location__, 'model')) #These two lines should make the above code work for both windows and mac
+model = keras.models.load_model(os.path.join(__location__, 'model')) 
 model.summary()
 
 
