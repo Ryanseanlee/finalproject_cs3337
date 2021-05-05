@@ -83,10 +83,10 @@ def createModel():
             validation_steps=50,  # 1000 images = batch_size * steps
             verbose=2)
 
-      model.save('./model') #For mac ../model
-model = keras.models.load_model('./model') #For mac ../model
-# model.save(os.path.join('.', 'model')) #These two lines should make the above code work for both windows and mac
-# model = keras.models.load_model(os.path.join('.', 'model')) 
+      # model.save('../model') #For mac ../model
+      # model = keras.models.load_model('../model') #For mac ../model
+      model.save(os.path.join('.', 'model')) #These two lines should make the above code work for both windows and mac
+model = keras.models.load_model(os.path.join('.', 'model')) 
 model.summary()
 
 

@@ -9,7 +9,7 @@ from main import attempt_classification
 root = Tk()
 root.geometry("550x300+700+200")
 root.resizable(width=True, height=True)
-
+panel=Label(root, image='')
 current_image_path = ""
 
 def openfn():
@@ -17,7 +17,10 @@ def openfn():
     return filename
 
 def open_img():
-    global current_image_path
+    global current_image_path, panel
+    
+    panel.pack_forget()
+        
     x = openfn()
     current_image_path = x
     img = Image.open(x)
@@ -26,6 +29,7 @@ def open_img():
     panel = Label(root, image=img)
     panel.image = img
     panel.pack()
+    
 
 def attempt_program_run():
     print('Current Image path: ' + current_image_path)
@@ -39,10 +43,10 @@ def attempt_program_run():
 
 def classify_value(var):
     if var[0]>0.5:
-        label = Label(root, text='Image Classified: DOG').pack(side=BOTTOM)
+        label = Label(root, text='Image Classified: DOG').pack(side=BOTTOM, pady=10)
         print(" is a dog")  
     else:
-        label = Label(root, text='Image Classified: CAT').pack(side=BOTTOM)
+        label = Label(root, text='Image Classified: CAT').pack(side=BOTTOM, pady=10)
         print(" is a cat")
 
 
