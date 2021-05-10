@@ -57,7 +57,7 @@ def classify_value(var):
         print(" is a cat")
 
 
-topLabel = Label(root, text="GUI Project created by...")
+topLabel = Label(root, text="CatDog:\n Is it a Cat or a Dog?")
 # pack buttons onto the gui and begin the root.mainloop()
 topLabel.pack(pady=5,)
 btn = Button(root, text='Image To Classify', command=open_img).pack(pady=10,)
