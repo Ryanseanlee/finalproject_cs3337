@@ -3,6 +3,7 @@ from PIL import ImageTk, Image
 from tkinter import filedialog
 import os
 from main import attempt_classification
+from main import createModel
 
 # Had to do pip install image
 #what 
@@ -60,6 +61,8 @@ def classify_value(var):
 topLabel = Label(root, text="CatDog:\n Is it a Cat or a Dog?")
 # pack buttons onto the gui and begin the root.mainloop()
 topLabel.pack(pady=5,)
+trainBtn = Button(root, text= 'Train Model', command=createModel).pack(pady = 5,)
 btn = Button(root, text='Image To Classify', command=open_img).pack(pady=10,)
 runTensor = Button(root, text='Run Program', command=attempt_program_run).pack(pady=5,side=BOTTOM)
+
 root.mainloop()
