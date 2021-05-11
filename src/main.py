@@ -14,8 +14,11 @@ __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 __location__ = os.path.normpath(os.path.join(__location__, os.pardir))
 
+
+
 def createModel():
-      base_dir = 'src\cats_and_dogs_filtered'
+      
+      base_dir =  os.path.join('src', 'cats_and_dogs_filtered')
       train_dir = os.path.join(base_dir, 'train')
       validation_dir = os.path.join(base_dir, 'validation')
 
