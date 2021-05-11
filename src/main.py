@@ -61,15 +61,12 @@ def createModel():
             fill_mode='nearest')
       test_datagen = ImageDataGenerator(rescale=1./255)
 
-      # Flow training images in batches of 20 using train_datagen generator
       train_generator = train_datagen.flow_from_directory(
-            train_dir,  # This is the source directory for training images
-            target_size=(150, 150),  # All images will be resized to 150x150
+            train_dir, 
+            target_size=(150, 150),  
             batch_size=20,
-            # Since we use binary_crossentropy loss, we need binary labels
             class_mode='binary')
 
-      # Flow validation images in batches of 20 using test_datagen generator
       validation_generator = test_datagen.flow_from_directory(
             validation_dir,
             target_size=(150, 150),
@@ -78,10 +75,10 @@ def createModel():
 
       history = model.fit_generator(
             train_generator,
-            steps_per_epoch=100,  # 2000 images = batch_size * steps
+            steps_per_epoch=100, 
             epochs=100,
             validation_data=validation_generator,
-            validation_steps=50,  # 1000 images = batch_size * steps
+            validation_steps=50,  
             verbose=2)
 
       # model.save('../model') #For mac ../model
